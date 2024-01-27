@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="mt-5 container  ">
+        <h2>Игры</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Игра</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if games_list %}
+                    {% for game in games_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><a href="{{ game.get_absolute_url }}">{{ game }}</a></td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="2">Нет доступных игр.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

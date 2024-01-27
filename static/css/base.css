@@ -1,0 +1,14 @@
+/* Стили для основного контейнера */
+.main-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+/* Стили для сообщений об ошибках с красным цветом текста */
+.error {
+    color: #ff0000;
+}
+
+.container {
+    margin-top: 0px;
+}

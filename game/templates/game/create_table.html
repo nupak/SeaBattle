@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block header %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/game/table.css' %}">
+{% endblock %}
+
+{% block content %}
+     <div class="container">
+
+        <div class="board">
+            <div class="fields" id="fields"></div>
+        </div>
+        <div class="controls">
+            <label for="board-size">Размер поля (N): </label>
+            <input type="number" id="board-size" min="1" max="10" value="5">
+            <button id="resize-board">Изменить размер</button>
+            <br>
+            <form method="post" action="">
+                {% csrf_token %}
+                {{form.as_p}}
+            </form>
+            <button id="send-data">Отправить</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <script src="{% static 'js/game/createTable.js' %}"></script>
+{% endblock %}
+

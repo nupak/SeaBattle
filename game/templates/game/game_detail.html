@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block header %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/game/playing_table.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% if user.is_staff %}
+            <div class="game-info">
+                <p class="mb-2"><b>Поле игрока {{game.player}}</b></p>
+                <div class="button-container">
+                    <button id="addBulletBtn" class="btn btn-primary">Добавить пулю</button>
+                    <button id="removeBulletBtn" class="btn btn-danger">Убрать пулю</button>
+                </div>
+            </div>
+        {% endif %}
+
+
+        <div class="board">
+            <div class="fields" id="fields"></div>
+        </div>
+        <div class="controls">
+            <div class="troffeys" id="troffeys">Призы
+
+            </div>
+            <div class="bullets">
+                <span>Количество пуль:</span>
+                <span id="bullets-field">{{game.bullets}}</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <div id="game-info" data-field-size="{{ game.field_size }}"
+                        data-player-shots="{{ game.player_shots }}"
+                        data-bullets="{{ game.bullets }}"
+                        data-sunk-ships="{{ game.sunk_ships }}">
+
+    </div>
+    {% if user.is_staff %}
+        <script src="{% static 'js/game/playTableAdmin.js' %}"></script>
+    {% else %}
+         <script src="{% static 'js/game/playTableUser.js' %}"></script>
+    {% endif %}
+
+    <script>
+        var prizesList = {{ prizes_list|safe }};
+</script>
+
+{% endblock %}
+
